@@ -36,17 +36,18 @@ class RandomQuoteMachine extends React.Component {
         author.className = "fade-out";
     }
 
+
     quoteGenerator() {
         const wrapper = document.querySelector("#site-wrapper");
         const text = document.querySelector("#text");
         const author = document.querySelector("#author");
-        let rQuoteNumber = Math.floor(Math.random() * 1644);
+        
+        const rQuoteNumber = Math.floor(Math.random() * 16 ); //api now only returns 16 quotes
         fetch("https://type.fit/api/quotes")
             .then(function(response) {
             return response.json();
         })
             .then(data => {
-
             let randomQuote = data[rQuoteNumber];
             let randomText = randomQuote.text;
             let randomAuthor = randomQuote.author;
@@ -93,13 +94,13 @@ class RandomQuoteMachine extends React.Component {
             <body> 
 
             <div id = "site-wrapper" style={{
-  backgroundColor: this.state.oldColor =! this.state.backgroundColor ? this.state.oldColor : this.state.backgroundColor,
-  transition: "all .7s ease",
-  WebkitTransition: "all .7s ease",
-  MozTransition: "all .7s ease"
-}}>
-            
-            
+            backgroundColor: this.state.oldColor =! this.state.backgroundColor ? this.state.oldColor : this.state.backgroundColor,
+            transition: "all .7s ease",
+            WebkitTransition: "all .7s ease",
+            MozTransition: "all .7s ease"
+            }}>
+
+
             <div className = "container fade-in" id = "quote-box">
             <div className = "row">
             <div className = "col-1 text-left">
@@ -119,22 +120,22 @@ class RandomQuoteMachine extends React.Component {
             <div id = "button-container" className = "row">
             <div className = "col-md-6 col-12 text-md-right order-md-2 text-center">
             <button className = "btn btn-primary btn-lg" id = "new-quote" onClick={() => {this.fadeOut(); setTimeout(() => {this.quoteGenerator()},500);}}>new quote</button>
-            </div>
-            <div className = "col-md-6 col-12 text-md-left order-md-1 text-center">
-            <a id = "tweet-quote" href = "https://www.twitter.com/intent/tweet"><FontAwesomeIcon icon={faTwitterSquare} /></a>
-            <a id = "facebook-quote" href = "https://www.facebook.com"><FontAwesomeIcon icon={faFacebookSquare} /></a>
-            <a id = "email-quote" href = "mailto:"><FontAwesomeIcon icon={faEnvelopeSquare} /></a>
-            </div>
+</div>
+<div className = "col-md-6 col-12 text-md-left order-md-1 text-center">
+    <a id = "tweet-quote" href = "https://www.twitter.com/intent/tweet"><FontAwesomeIcon icon={faTwitterSquare} /></a>
+<a id = "facebook-quote" href = "https://www.facebook.com"><FontAwesomeIcon icon={faFacebookSquare} /></a>
+<a id = "email-quote" href = "mailto:"><FontAwesomeIcon icon={faEnvelopeSquare} /></a>
+</div>
 
-            </div>
+</div>
 
-            </div>
-            </div>
+</div>
+</div>
 
-            </body>
-            </html>
+</body>
+</html>
 
-        );};
+);};
 }
 
 export default RandomQuoteMachine;
